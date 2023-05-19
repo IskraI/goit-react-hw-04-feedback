@@ -1,16 +1,17 @@
 import css from './Statistics.module.css';
 import PropTypes from 'prop-types';
 
-const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
-  <ul className={css.statList}>
-    <li className={css.statItem}> Good: {good} </li>
-    <li className={css.statItem}> Neutral: {neutral}</li>
-    <li className={css.statItem}> Bad: {bad}</li>
-    <li className={css.statItem}> Total: {total}</li>
-    <li className={css.statItem}> Bad: {positivePercentage}%</li>
-  </ul>
-);
-
+const Statistics = props => {
+  return (
+    <ul className={css.statList}>
+      {Object.keys(props).map(key => (
+        <li key={key} className={css.statItem}>
+          {key}: {props[key]}
+        </li>
+      ))}
+    </ul>
+  );
+};
 Statistics.propTypes = {
   good: PropTypes.number.isRequired,
   neutral: PropTypes.number.isRequired,
@@ -20,3 +21,10 @@ Statistics.propTypes = {
 };
 
 export default Statistics;
+
+/* //   <li className={css.statItem}> Good: {good} </li>
+//   <li className={css.statItem}> Neutral: {neutral}</li>
+//   <li className={css.statItem}> Bad: {bad}</li>
+//   <li className={css.statItem}> Total: {total}</li>
+//   <li className={css.statItem}> Bad: {positivePercentage}%</li>
+// </ul> */
